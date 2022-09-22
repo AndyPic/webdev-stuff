@@ -1,5 +1,7 @@
 # webdev-stuff
 
+A place for me to put useful webdev related stuff I make.
+
 # Vanilla JS
 
 <details close>
