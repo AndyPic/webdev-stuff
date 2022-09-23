@@ -21,7 +21,12 @@ class ModalElement {
     #onDecline;
 
     /** @type {boolean} is the modal currently active */
-    isActive = false;
+    #isActive = false;
+
+    /** @type {boolean} is the modal currently active */
+    get isActive() {
+        return this.#isActive;
+    }
 
     get #DEFAULT_CONFIRM_TEXT() {
         return "Ok";
@@ -228,7 +233,7 @@ class ModalElement {
      */
     start(title = "", description = "", onEndActions, onConfirmActions, onDeclineActions, onStartActions) {
 
-        if (this.isActive)
+        if (this.#isActive)
             throw new Error(`Can't start new modal before previous ends.`);
         
         // Set up data
@@ -278,7 +283,7 @@ class ModalElement {
         // Invoke start events
         this.invokeEvent(this.#onStart);
 
-        this.isActive = true;
+        this.#isActive = true;
     }
 
     /**
@@ -295,7 +300,7 @@ class ModalElement {
         // Trigger on-end event
         this.invokeEvent(this.#onEnd);
 
-        this.isActive = false;
+        this.#isActive = false;
     }
 
     /**
